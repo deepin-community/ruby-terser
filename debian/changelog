@@ -1,0 +1,35 @@
+ruby-terser (1.0.2+dfsg-4) unstable; urgency=medium
+
+  * Team upload
+  * Update minimum version of libjs-source-map for bug fix
+  * Add a smoke test as autopkgtest
+
+ -- Pirate Praveen <praveen@debian.org>  Mon, 04 Jan 2021 14:20:04 +0530
+
+ruby-terser (1.0.2+dfsg-3) unstable; urgency=medium
+
+  * Team upload
+
+  [ Debian Janitor ]
+  * Trim trailing whitespace.
+  * Use secure URI in Homepage field.
+  * Set upstream metadata fields: Repository.
+
+  [ Pirate Praveen ]
+  * Set version variable in debian/rules before using it
+  * Bump Standards-Version to 4.5.1 (no changes needed)
+  * Fix copyright file syntax, add blank line before Files
+
+ -- Pirate Praveen <praveen@debian.org>  Mon, 04 Jan 2021 01:27:45 +0530
+
+ruby-terser (1.0.2+dfsg-2) unstable; urgency=medium
+
+  * Source only upload for migration to testing
+
+ -- Vivek K J <vivekkj@protonmail.com>  Mon, 16 Nov 2020 22:14:28 +0530
+
+ruby-terser (1.0.2+dfsg-1) unstable; urgency=medium
+
+  * Initial release (Closes: #974119)
+
+ -- Vivek K J <vivekkj@protonmail.com>  Tue, 10 Nov 2020 18:26:05 +0530

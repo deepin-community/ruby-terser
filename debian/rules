@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+export GEM2DEB_TEST_RUNNER = --check-dependencies
+export DH_RUBY = --gem-install
+version = $(shell ruby -r ./lib/terser/version  -e "puts Terser::VERSION")
+
+%:
+	dh $@ --buildsystem=ruby --with ruby
+
+override_dh_link:
+	dh_link
+	mkdir -p debian/ruby-terser/usr/share/rubygems-integration/all/gems/terser-$(version)/lib
+	ln -s /usr/share/javascript/terser/bundle.min.js \
+		debian/ruby-terser/usr/share/rubygems-integration/all/gems/terser-$(version)/lib/terser.js
+	ln -s /usr/share/javascript/source-map/source-map.min.js \
+		debian/ruby-terser/usr/share/rubygems-integration/all/gems/terser-$(version)/lib/source-map.js

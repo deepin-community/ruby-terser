@@ -1,0 +1,20 @@
+## Unreleased
+
+## 1.0.2 (13 October 2020)
+- LICENSE.txt encoding fix
+- update rubocop to 0.93.1
+
+## 1.0.1 (02 August 2020)
+- share the context in order to speedup sprockets compilation
+
+## 1.0.0 (13 July 2020)
+- add sprockets wrapper
+- drop Ruby < 2.3.0 support
+- drop ES5 mode
+- drop IE8 mode
+- drop unsupported runtimes (therubyracer, therubyrhino) because they don't support ECMA6
+- update tests and new options
+- update SourceMap to [0.6.1](https://github.com/mozilla/source-map/compare/0.5.7...0.6.1)
+- update TerserJS to [4.8.0]
+- switch from UglifyJS to TerserJS (https://github.com/terser/terser)
+- fork from Uglifier (https://github.com/lautis/uglifier/releases/tag/v4.2.0)

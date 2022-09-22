@@ -1,0 +1,28 @@
+Source: ruby-terser
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Team <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Vivek K J <vivekkj@protonmail.com>
+Build-Depends: debhelper-compat (= 13),
+               gem2deb (>= 1),
+               ruby-execjs (<< 3),
+               ruby-execjs (>= 0.3.0)
+Standards-Version: 4.5.1
+Vcs-Git: https://salsa.debian.org/ruby-team/ruby-terser.git
+Vcs-Browser: https://salsa.debian.org/ruby-team/ruby-terser
+Homepage: https://github.com/ahorek/terser-ruby
+Testsuite: autopkgtest-pkg-ruby
+XS-Ruby-Versions: all
+Rules-Requires-Root: no
+
+Package: ruby-terser
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ${misc:Depends},
+         ${ruby:Depends},
+         ${shlibs:Depends},
+         libjs-terser (>= 4.0),
+         libjs-source-map (>= 0.7.0++dfsg2+really.0.6.1-6~)
+Description: Ruby wrapper for Terser JavaScript compressor
+ Terser minifies JavaScript files by wrapping     TerserJS to be accessible in
+ Ruby

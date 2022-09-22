@@ -1,0 +1,6 @@
+Tests: smoke-test
+Depends: @
+ , ruby-railties (>= 2:6.0~)
+ , ruby-bundler
+ , ruby-sass-rails
+ , ruby-jquery-rails

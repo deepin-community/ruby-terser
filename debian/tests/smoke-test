@@ -1,0 +1,85 @@
+#!/bin/sh
+
+exec 2>&1
+set -ex
+
+smoke() {
+# Create a dummy rails app skeleton
+cd $AUTOPKGTEST_TMP
+mkdir foo
+cd foo
+mkdir -p config
+mkdir -p app/assets/javascripts
+
+# Include the rails asset we want to test
+cat >> app/assets/javascripts/application.js <<EOF
+# =require jquery
+# =require jquery2
+# =require jquery3
+EOF
+
+cat >> Gemfile <<EOF
+gem "rake"
+gem "railties"
+gem "jquery-rails", "~> 4.3"
+gem "terser"
+EOF
+
+bundle install --local
+
+# Copied from rails new foo
+cat >> Rakefile <<EOF
+require_relative 'config/application'
+
+Rails.logger = Logger.new(STDOUT)
+Rails.application.load_tasks
+EOF
+
+# Copied from rails new foo
+cat >> config/application.rb <<EOF
+require_relative 'boot'
+
+require 'rails/all'
+
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
+
+module Foo
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 6.0
+
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration can go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
+  end
+end
+EOF
+
+# Copied from rails new foo
+cat >> config/boot.rb <<EOF
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
+EOF
+
+# Copied from rails new foo
+cat >> config/environment.rb <<EOF
+Sprockets.register_compressor 'application/javascript', :terser, Terser::Compressor
+
+Rails.application.configure do
+  config.assets.js_compressor = :terser
+end
+
+# Load the Rails application.
+require_relative 'application'
+
+# Initialize the Rails application.
+Rails.application.initialize!
+EOF
+
+# Confirm sprockets can find the asset
+bundle exec rake assets:precompile
+}
+
+smoke jquery
